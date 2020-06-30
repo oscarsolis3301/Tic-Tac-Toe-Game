@@ -1,71 +1,16 @@
 #include <iostream>
 #include <iomanip>
+#include <string>
+#include <windows.h>
 using namespace std;
 
-/* void FillArray(char boardArray[][3]);
-void DisplayBoard(const char boardAr[][3]);
-
-// Start of DisplayBoard
-void DisplayBoard(const char boardAr[][3])
-{
-	// Variable initialized
-	int row; 
-	// Variable initialized
-	int column;
-	// Outputs the top bar
-	cout << setw(10) << "1" << setw(8) << "2" << setw(9) << "3\n\n"; 
-	// Start of for loop that will display the board
-	for (row = 0; row < 3; row++)
-	{
-		// This will display each row
-		cout << setw(7) << "[" << row + 1 << "][1] | " << "[" << row + 1;
-		// This will display each row
-		cout << "][2] | " << "[" << row + 1 << "][3]" << endl;
-		// This will display each row
-		cout << setw(14) << "|" << setw(9) << "|" << endl;
-		// This will display each column
-		for (column = 0; column < 3; column++)
-		{
-			// This will be display at the left of everything
-			switch (column)
-			{
-				// This will display the right of the left column
-			case 0: cout << row + 1 << setw(9) << boardAr[row][column];
-				// This will seperate X and O
-				cout << setw(4) << "|";
-				break;
-				// This will display on the right of the middle column
-			case 1: cout << setw(4) << boardAr[row][column];
-				// This will seperate X and O
-				cout << setw(5) << "|";
-				break;
-				// This will show up on the left side of the board
-			case 2: cout << setw(4) << boardAr[row][column] << endl;
-				break;
-				// If something failes, it will output an error message
-			default: cout << "ERROR!\n\n";
-			}
-		}
-		// Will display the pipes at the end of each column
-		cout << setw(14) << "|" << setw(10) << "|\n";
-		// An if statement that only runs two times
-		if (row != 2)
-		{
-			// Splits the board twice
-			cout << setw(32) << "--------------------------\n";
-		}
-	}
-	cout << endl << endl;
-} // End of DisplayBoard
-*/
-// Start of the Old File
 
 void DisplayHeader();
 void OutputInstruct(); 
 char MainMenu(char& option, string& playerX, string& playerO);
 void InitBoard(char boardAr[][3]); // OUT - tic tac toe board
 void DisplayBoard(const char boardAr[][3]); // IN - tic tac toe board
-void GetPlayers(string& playerX, string& playerO);
+void GetPlayers(string& playerX, string& playerO, int option);
 void RunGame(char boardArray[][3], char option, string& playerX, string& playerO, int& pointsForX, int& pointsForO, bool& stop);
 void GetAndCheckInp(char boardArr[][3], char token, string playerX, string playerO);
 void GetAndCheckInpComputer(char boardArr[][3], char token, string playerX, string playerO);
@@ -76,22 +21,16 @@ void OptionC(char boardArray[][3], char option, string& playerX, string& playerO
 void OptionD(char boardArray[][3], char option, string& playerX, string& playerO, int& pointsForX, int& pointsForO, bool& stop);
 
 void OutputInstruct() {
-	// Brief welcome
 	cout << "Hello and welcome to Tic-Tac-Toe!\n\n";
-	//this_thread::sleep_for(2s);
-	cout << "Here, you can choose to end the program, set your name, decide"
-		 << " if you want to play against another\nplayer (Two player mode) or versus the "
-		 << "computer (One Player Mode)."
-	   	 << "\n\n\n"
-		 << "You can type what location you want to move to like this:"
-		 << "\n\n\"Oscar's turn! What\'s your play?: 3 3\"\n\n"
-		 << "This will move your character to the location the 3rd row and 3rd column\n\n\n";
+	Sleep(900);
 } // End of OutputInstruct
 
 // Start of MainMenu
 char MainMenu(char& option, string& playerX, string& playerO) {
 	int runOnce = 0;
 	bool menu = true;
+	int computer;
+	computer = 0;
 	while (menu) {
 		if (runOnce == 0) {
 			cout << "\t[ MAIN MENU: ]\n\n" << "A) Exit\n\nB) Set Player Names\n\nC) Play in Two Player Mode\n\n"
@@ -109,7 +48,7 @@ char MainMenu(char& option, string& playerX, string& playerO) {
 			menu = false;
 		}
 		else if (option == 'b' || option == 'B') {
-			GetPlayers(playerX, playerO);
+			GetPlayers(playerX, playerO, computer);
 			runOnce++;
 		}
 		else if (option == 'c' || option == 'C') {
@@ -124,7 +63,8 @@ char MainMenu(char& option, string& playerX, string& playerO) {
 }  //End of MainMenu
 
 // Start of GetPlayers
-void GetPlayers(string& playerX, string& playerO) {
+void GetPlayers(string& playerX, string& playerO, int option) {
+	if (option == 0) {
 	system("cls");
 	cout << "Enter the name for player X : ";
 	cin >> playerX;
@@ -132,6 +72,14 @@ void GetPlayers(string& playerX, string& playerO) {
 	cout << "Enter the name for player O : ";
 	cin >> playerO;
 	cout << endl << endl;
+	} else if (option == 1) {
+	system("cls");
+	cout << "Enter the name for player X : ";
+	cin >> playerX;
+	cout << endl;
+	}
+	
+
 } // End of GetPlayers
 
 // Start of InitBoard
@@ -175,7 +123,7 @@ void GetAndCheckInpComputer(char boardArr[][3], char token, string playerX, stri
 		boardArr[x][y] = 'X';
 	} else if (token == 'O') {
 		cout << playerO << " is thinking...";
-		//this_thread::sleep_for(2s);
+		Sleep(1200);
 		while (empty) {
 			x = rand() % 3;
 			y = rand() % 3;

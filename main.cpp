@@ -1,28 +1,22 @@
 #include "header.h"
 
-struct points {
+struct user {
 int pointsForX, pointsForO;
+string playerX, playerO;
 };
 
 int main() {
 
-	points point;
+	user player;
     bool running;
     running = true;
 	// Initializes the board
 	char boardArray[][3] = { {}, {}, {} };
 	// Initializes the option
 	char option;
-	// Initializes the name for playerX
-	string playerX = "";
-	// Initializes the name for playerO
-	string playerO = "";
-	// Displays the class header
-	// DisplayHeader();
-	// Outputs the instructions
 	OutputInstruct();
 	//Gets the player's option
-	option = MainMenu(option, playerX, playerO);
+	option = MainMenu(option, player.playerX, player.playerO);
 	// Ends the game if they want to exit
 	if (option == 'a' || option == 'A') {
 		system("pause");
@@ -32,7 +26,7 @@ int main() {
         while (running) {
 			// Fills the board with ' '
 			InitBoard(boardArray);
-	        RunGame(boardArray, option, playerX, playerO, point.pointsForX, point.pointsForO, running);
+	        RunGame(boardArray, option, player.playerX, player.playerO, player.pointsForX, player.pointsForO, running);
         }
 	
 	}
@@ -56,6 +50,8 @@ void OptionC(char boardArray[][3], char option, string& playerX, string& playerO
 	char whoWon;
 	int index = 0;
 	int randomNum = rand() % 10 + 1;
+	int computer;
+	computer = 0;
     string response;
 	if (randomNum % 2 == 0) {
 		token = 'X';
@@ -65,7 +61,7 @@ void OptionC(char boardArray[][3], char option, string& playerX, string& playerO
 	}
 	if (option == 'c' || option == 'C') {
 		if (playerX == "" || playerO == "") {
-			GetPlayers(playerX, playerO);
+			GetPlayers(playerX, playerO, computer);
 		}
 		//InitBoard(boardArray);
 		bool run = true;
@@ -102,13 +98,17 @@ void OptionC(char boardArray[][3], char option, string& playerX, string& playerO
 	}	
 }
 
+
 void OptionD(char boardArray[][3], char option, string& playerX, string& playerO, int& pointsForX, int& pointsForO, bool& stop){
-	
-		char token;
+	playerO = "Computer";
+	char token;
 	char whoWon;
 	int index = 0;
 	int randomNum = rand() % 10 + 1;
     string response;
+
+	int computer = 1;
+
 	if (randomNum % 2 == 0) {
 		token = 'X';
 	}
@@ -117,7 +117,7 @@ void OptionD(char boardArray[][3], char option, string& playerX, string& playerO
 	}
 	 if (option == 'd' || option == 'D') {
 		if (playerX == "" || playerO == "") {
-			GetPlayers(playerX, playerO);
+			GetPlayers(playerX, playerO, computer);
 		}
 		//InitBoard(boardArray);
 		bool run = true;
