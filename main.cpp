@@ -3,7 +3,8 @@
 int main() {
 
     int pointsForX, pointsForO;
-
+    bool running;
+    running = true;
 	// Initializes the board
 	char boardArray[][3] = { {}, {}, {} };
 	// Initializes the option
@@ -16,8 +17,6 @@ int main() {
 	//  DisplayHeader();
 	// Outputs the instructions
 	OutputInstruct();
-	// Fills the board with ' '
-	InitBoard(boardArray);
 	//Gets the player's option
 	option = MainMenu(option, playerX, playerO);
 	// Ends the game if they want to exit
@@ -26,19 +25,23 @@ int main() {
 		return 0;
 	} else {
 		// Starts the game if they want to play
-        //while (running) {
-	    RunGame(boardArray, option, playerX, playerO, pointsForX, pointsForO);
-      //  }
+        while (running) {
+			// Fills the board with ' '
+			InitBoard(boardArray);
+	        RunGame(boardArray, option, playerX, playerO, pointsForX, pointsForO, running);
+        }
 	
 	}
 } // End of main
 
 // Start of RunGame
-void RunGame(char boardArray[][3], char option, string& playerX, string& playerO, int& pointsForX, int& pointsForO) {
+void RunGame(char boardArray[][3], char option, string& playerX, string& playerO, int& pointsForX, int& pointsForO, bool& stop) {
 	char token;
 	char whoWon;
 	int index = 0;
 	int randomNum = rand() % 10 + 1;
+    string response;
+
 	system("cls");
 	if (randomNum % 2 == 0) {
 		token = 'X';
@@ -73,8 +76,15 @@ void RunGame(char boardArray[][3], char option, string& playerX, string& playerO
             pointsForO += 5;
             cout << endl <<  playerO << "\'s points : " << pointsForO << endl;
         }
-      
+        cout << endl << "Would you like to play again? (Yes/No) : ";
+        cin >> response;
+        if (response == "yes" || response == "Yes") {
+            stop = true;
+        } else if(response == "no" || response == "No"){
+            stop = false;
+        }
 		system("pause");
+        system("cls");
 	}	else if (option == 'd' || option == 'D') {
 		if (playerX == "" || playerO == "") {
 			GetPlayers(playerX, playerO);
@@ -100,6 +110,15 @@ void RunGame(char boardArray[][3], char option, string& playerX, string& playerO
         } else if(whoWon == 'O'){
             pointsForO += 5;
         }
+        cout << endl << "Would you like to play again? (Yes/No) : ";
+        cin >> response;
+        if (response == "yes" || response == "Yes") {
+            stop = true;
+        } else if(response == "no" || response == "No"){
+            stop = false;
+        }
+		system("pause");
+        system("cls");
 		system("pause");
 	}
 } // End of RunGame

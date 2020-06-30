@@ -66,7 +66,7 @@ char MainMenu(char& option, string& playerX, string& playerO);
 void InitBoard(char boardAr[][3]); // OUT - tic tac toe board
 void DisplayBoard(const char boardAr[][3]); // IN - tic tac toe board
 void GetPlayers(string& playerX, string& playerO);
-void RunGame(char boardArray[][3], char option, string& playerX, string& playerO, int& pointsForX, int& pointsForO);
+void RunGame(char boardArray[][3], char option, string& playerX, string& playerO, int& pointsForX, int& pointsForO, bool& stop);
 void GetAndCheckInp(char boardArr[][3], char token, string playerX, string playerO);
 void GetAndCheckInpComputer(char boardArr[][3], char token, string playerX, string playerO);
 char SwitchToken(char token); // IN - current player�s token ('X' or 'O')
