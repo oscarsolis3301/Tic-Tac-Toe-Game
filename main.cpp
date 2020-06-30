@@ -1,8 +1,12 @@
 #include "header.h"
 
+struct points {
+int pointsForX, pointsForO;
+};
+
 int main() {
 
-    int pointsForX, pointsForO;
+	points point;
     bool running;
     running = true;
 	// Initializes the board
@@ -14,7 +18,7 @@ int main() {
 	// Initializes the name for playerO
 	string playerO = "";
 	// Displays the class header
-	//  DisplayHeader();
+	// DisplayHeader();
 	// Outputs the instructions
 	OutputInstruct();
 	//Gets the player's option
@@ -28,7 +32,7 @@ int main() {
         while (running) {
 			// Fills the board with ' '
 			InitBoard(boardArray);
-	        RunGame(boardArray, option, playerX, playerO, pointsForX, pointsForO, running);
+	        RunGame(boardArray, option, playerX, playerO, point.pointsForX, point.pointsForO, running);
         }
 	
 	}
@@ -36,13 +40,23 @@ int main() {
 
 // Start of RunGame
 void RunGame(char boardArray[][3], char option, string& playerX, string& playerO, int& pointsForX, int& pointsForO, bool& stop) {
+	if(option == 'c' || option == 'C') {
+		OptionC(boardArray, option, playerX, playerO, pointsForX, pointsForO, stop);
+	} else if (option == 'd' || option == 'D') {
+		OptionD(boardArray, option, playerX, playerO, pointsForX, pointsForO, stop);
+	} else {
+		cout << "Invalid input." << endl << endl;
+		stop = false;
+	}
+	
+} // End of RunGame
+
+void OptionC(char boardArray[][3], char option, string& playerX, string& playerO, int& pointsForX, int& pointsForO, bool& stop) {
 	char token;
 	char whoWon;
 	int index = 0;
 	int randomNum = rand() % 10 + 1;
     string response;
-
-	system("cls");
 	if (randomNum % 2 == 0) {
 		token = 'X';
 	}
@@ -85,7 +99,23 @@ void RunGame(char boardArray[][3], char option, string& playerX, string& playerO
         }
 		system("pause");
         system("cls");
-	}	else if (option == 'd' || option == 'D') {
+	}	
+}
+
+void OptionD(char boardArray[][3], char option, string& playerX, string& playerO, int& pointsForX, int& pointsForO, bool& stop){
+	
+		char token;
+	char whoWon;
+	int index = 0;
+	int randomNum = rand() % 10 + 1;
+    string response;
+	if (randomNum % 2 == 0) {
+		token = 'X';
+	}
+	else {
+		token = 'O';
+	}
+	 if (option == 'd' || option == 'D') {
 		if (playerX == "" || playerO == "") {
 			GetPlayers(playerX, playerO);
 		}
@@ -117,8 +147,7 @@ void RunGame(char boardArray[][3], char option, string& playerX, string& playerO
         } else if(response == "no" || response == "No"){
             stop = false;
         }
-		system("pause");
         system("cls");
 		system("pause");
 	}
-} // End of RunGame
+}

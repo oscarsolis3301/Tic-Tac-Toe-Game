@@ -72,6 +72,8 @@ void GetAndCheckInpComputer(char boardArr[][3], char token, string playerX, stri
 char SwitchToken(char token); // IN - current player�s token ('X' or 'O')
 char CheckWin(const char boardAr[][3]); // IN - tic tac toe board
 void OutputWinner(char whoWon, string playerX, string playerO); 
+void OptionC(char boardArray[][3], char option, string& playerX, string& playerO, int& pointsForX, int& pointsForO, bool& stop);
+void OptionD(char boardArray[][3], char option, string& playerX, string& playerO, int& pointsForX, int& pointsForO, bool& stop);
 
 void OutputInstruct() {
 	// Brief welcome
