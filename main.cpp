@@ -25,6 +25,7 @@ int main() {
 		// Starts the game if they want to play
         while (running) {
 			// Fills the board with ' '
+			system("cls");
 			InitBoard(boardArray);
 	        RunGame(boardArray, option, player.playerX, player.playerO, player.pointsForX, player.pointsForO, running);
         }
@@ -147,7 +148,8 @@ void OptionD(char boardArray[][3], char option, string& playerX, string& playerO
         } else if(response == "no" || response == "No"){
             stop = false;
         }
-        system("cls");
+       
 		system("pause");
+		system("cls");
 	}
 }
