@@ -6,7 +6,6 @@ string playerX, playerO;
 };
 
 int main() {
-
 	user player;
     bool running;
     running = true;
@@ -29,7 +28,6 @@ int main() {
 			InitBoard(boardArray);
 	        RunGame(boardArray, option, player.playerX, player.playerO, player.pointsForX, player.pointsForO, running);
         }
-	
 	}
 } // End of main
 
@@ -46,6 +44,7 @@ void RunGame(char boardArray[][3], char option, string& playerX, string& playerO
 	
 } // End of RunGame
 
+/*
 void OptionC(char boardArray[][3], char option, string& playerX, string& playerO, int& pointsForX, int& pointsForO, bool& stop) {
 	char token;
 	char whoWon;
@@ -98,7 +97,7 @@ void OptionC(char boardArray[][3], char option, string& playerX, string& playerO
         system("cls");
 	}	
 }
-
+*/
 
 void OptionD(char boardArray[][3], char option, string& playerX, string& playerO, int& pointsForX, int& pointsForO, bool& stop){
 	playerO = "Computer";
