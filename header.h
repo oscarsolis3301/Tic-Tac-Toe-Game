@@ -125,6 +125,20 @@ void GetAndCheckInpComputer(char boardArr[][3], char token, string playerX, stri
 		cout << playerO << " is thinking...";
 		while (empty) {
 			Sleep(1500);
+
+		/* 	for(int x = 0; x < 3; x ++) {
+				for(int y = 0; y < 3; y++) {
+					for(int z = 0; z < 3; z++) {
+						if(boardArr[x][y] == 'X' && boardArr[x+1][y+1] == 'X' && boardArr[x+2][x+2] == ' ') {
+							boardArr[x+2][x+2] = 'O';
+							empty = false;
+						}
+					}
+				}
+			}
+ */
+
+		// Checking horizontally
 		if (boardArr[0][0] == 'X' && boardArr[0][1] == 'X' && boardArr[0][2] == ' ') {
 			boardArr[0][2] = 'O';
 			empty = false;
@@ -134,7 +148,27 @@ void GetAndCheckInpComputer(char boardArr[][3], char token, string playerX, stri
 		} else if (boardArr[2][0] == 'X' && boardArr[2][1] == 'X' && boardArr[2][2] == ' ') {
 			boardArr[2][2] = 'O';
 			empty = false;
-		} else {
+		} 
+		// Checking Vertically 
+		else if (boardArr[0][0] == 'X' && boardArr[1][0] == 'X' && boardArr[2][0] == ' ') {
+		//return 'X';
+			boardArr[2][0] = 'O';
+			empty = false;
+		}
+		else if (boardArr[0][1] == 'X' && boardArr[1][1] == 'X' && boardArr[2][1] == ' ') {
+		//return 'X';
+			boardArr[2][1] = 'O';
+			empty = false;
+		}
+		else if (boardArr[0][2] == 'X' && boardArr[1][2] == 'X' && boardArr[2][2] == ' ') {
+		//return 'X';
+			boardArr[2][2] == 'O';
+			empty = false;
+		} else if (boardArr[0][0] == 'X' && boardArr[1][1] == 'X' && boardArr[2][2] == ' ') {
+				boardArr[2][2] = 'O';
+			} else if (boardArr[0][2] == 'X' && boardArr[1][1] == 'X' && boardArr[2][0] == ' ') {
+				boardArr[2][0] = 'O';
+			}else {
 			x = rand() % 3;
 			y = rand() % 3;
 			if (boardArr[x][y] == ' ') {
