@@ -123,17 +123,28 @@ void GetAndCheckInpComputer(char boardArr[][3], char token, string playerX, stri
 		boardArr[x][y] = 'X';
 	} else if (token == 'O') {
 		cout << playerO << " is thinking...";
-		Sleep(1500);
 		while (empty) {
-			
+			Sleep(1500);
+		if (boardArr[0][0] == 'X' && boardArr[0][1] == 'X' && boardArr[0][2] == ' ') {
+			boardArr[0][2] = 'O';
+			empty = false;
+		} else if (boardArr[1][0] == 'X' && boardArr[1][1] == 'X' && boardArr[1][2] == ' ') {
+			boardArr[1][2] = 'O';
+			empty = false;
+		} else if (boardArr[2][0] == 'X' && boardArr[2][1] == 'X' && boardArr[2][2] == ' ') {
+			boardArr[2][2] = 'O';
+			empty = false;
+		} else {
 			x = rand() % 3;
 			y = rand() % 3;
-			
 			if (boardArr[x][y] == ' ') {
 				boardArr[x][y] = 'O';
 				empty = false;
-			} 
-		}
+				} else {
+					empty = true;
+				}
+			}
+		}	
 	}
 } // End of GetAndCheckInpComputer
 
